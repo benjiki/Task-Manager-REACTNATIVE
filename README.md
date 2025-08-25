@@ -1,50 +1,141 @@
-# Welcome to your Expo app 👋
+# ✅ Task Manager
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A **cross-platform mobile application** built with **React Native (Expo)** for managing tasks efficiently.
+The backend is powered by **[Convex](https://convex.dev/)**, providing a serverless and real-time database solution.
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Tech Stack
 
-   ```bash
-   npm install
-   ```
+- **Frontend**: [React Native (Expo)](https://reactnative.dev/)
+- **Backend**: [Convex](https://convex.dev/)
+- **Language**: TypeScript
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 📂 Project Structure
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+.
+├── app/                    # App screens
+│   ├── (tabs)/             # Tab-based navigation
+│   │   ├── _layout.tsx
+│   │   ├── index.tsx
+│   │   └── settings.tsx
+│   └── _layout.tsx
+│
+├── assets/                 # Fonts, images, styles
+│   ├── fonts/
+│   ├── images/
+│   └── styles/
+│
+├── components/             # Reusable UI components
+│   ├── DangerZone.tsx
+│   ├── EmptyState.tsx
+│   ├── Header.tsx
+│   ├── LodingSpinner.tsx
+│   ├── Preferences.tsx
+│   ├── ProgressStats.tsx
+│   └── Todoinput.tsx
+│
+├── convex/                 # Convex backend
+│   ├── _generated/         # Auto-generated Convex files
+│   ├── schema.ts           # Convex schema
+│   └── todos.ts            # Backend logic for tasks
+│
+├── hooks/                  # Custom React hooks
+│
+├── App.js                  # App entry point
+├── package.json            # Dependencies
+├── tsconfig.json           # TypeScript config
+└── README.md               # Documentation
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## ⚙️ Setup Instructions
 
-To learn more about developing your project with Expo, look at the following resources:
+### 1. Clone the Repository
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+git clone https://github.com/your-username/task-manager.git
+cd task-manager
+```
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
+### 2. Install Dependencies
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+npm install
+```
+
+---
+
+### 3. Configure Convex
+
+1. Install the Convex CLI (if not already):
+
+   ```bash
+   npm install -g convex
+   ```
+
+2. Initialize Convex (first time only):
+
+   ```bash
+   npx convex dev
+   ```
+
+3. This will create a `.env.local` file in the project root with your Convex deployment URL and key.
+
+4. Make sure your `convex/schema.ts` defines your database schema, e.g.:
+
+   ```ts
+   import { defineSchema, defineTable } from "convex/schema";
+
+   export default defineSchema({
+     tasks: defineTable({
+       title: "string",
+       completed: "boolean",
+       createdAt: "number",
+     }),
+   });
+   ```
+
+---
+
+### 4. Run the App
+
+Start the Expo development server:
+
+```bash
+npx expo start
+```
+
+- Press `a` → Run on Android
+- Press `i` → Run on iOS (Mac required)
+- Press `w` → Open in browser
+
+---
+
+## 🛠 Features
+
+- 📝 Add, edit, and delete tasks
+- ✅ Mark tasks as completed
+- 📊 Track progress with **ProgressStats**
+- ⚡ Real-time updates powered by **Convex**
+- 🎨 Clean and reusable UI components
+
+---
+
+## 📌 Notes
+
+- Convex auto-generates backend files inside `convex/_generated` (do not edit manually).
+- Update `.env.local` if you redeploy or switch Convex environments.
+- Ensure TypeScript is enabled for type safety.
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
